@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get "/", :controller => "movies", :action => "index"
+
   # Routes for the Character resource:
   # CREATE
   get "/characters/new", :controller => "characters", :action => "new"

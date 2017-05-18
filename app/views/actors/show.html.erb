@@ -20,21 +20,19 @@
       <dt>Number of Roles</dt>
       <dd> <%= Character.where(:actor_id => @actor.id).count %> </dd>
 
-
-      <dt>Filmography</dt>
+      <!-- <dt>Filmography</dt>
       <dd> <%characters = Character.where(actor_id: @actor.id)%>
         <%characters.each do |character| %>
         <div> <%= Movie.find(character.movie_id).title %> </div>
         <% end %>
-      </dd>
-
-<!--
-      <dt>Filmography</dt>
-      <dd> <% Character.where(:actor_id => @actor.id).pluck("movie_id").each do |movie| %>
-        <div> <%= Movie.find(movie).title %> </div>
-        <% end %>
       </dd> -->
 
+      <dt>Filmography</dt>
+      <dd> <%characters = Actor.find(@actor.id).characters%>
+        <%characters.each do |character| %>
+        <div> <%= character %> </div>
+        <% end %>
+      </dd>
 
     </dl>
 
