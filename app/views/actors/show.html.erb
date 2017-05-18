@@ -22,30 +22,75 @@
 
       <!-- <dt>Filmography</dt>
       <dd> <%characters = Character.where(actor_id: @actor.id)%>
-        <%characters.each do |character| %>
-        <div> <%= Movie.find(character.movie_id).title %> </div>
-        <% end %>
-      </dd> -->
+      <%characters.each do |character| %>
+      <div> <%= Movie.find(character.movie_id).title %> </div>
+      <% end %>
+    </dd> -->
 
-      <dt>Filmography</dt>
-      <dd> <%characters = Actor.find(@actor.id).characters%>
-        <%characters.each do |character| %>
-        <div> <%= character %> </div>
-        <% end %>
-      </dd>
+    <dt>Filmography</dt>
+    <dd> <%movies = @actor.movies%>
+      <%movies.each do |movie| %>
+      <div> <%= movie.title %> </div>
+      <% end %>
+    </dd>
 
-    </dl>
+  </dl>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/actors" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/actors/<%= @actor.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_actor/<%= @actor.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+  <div class="page-header">
+    <h3>Add Character</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <form action="/create_character" method="post">
+        <!-- Hidden input for authenticity token to protect from forgery -->
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+        <!-- Label and input for movie_id -->
+        <div class="form-group">
+          <label for="movie_id" class="control-label">
+            Movie
+          </label>
+
+          <%= select_tag("movie_id", options_from_collection_for_select(Movie.all, :id, :title, @character.movie_id), :class => "form-control") %>
+
+          <input type="hidden" id="actor_id" name="actor_id" placeholder="Actor" class="form-control" value="<%= @actor.id %>">
+        </div>
+
+        <!-- Label and input for name -->
+        <div class="form-group">
+          <label for="name" class="control-label">
+            Name
+          </label>
+
+          <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @character.name %>">
+        </div>
+
+        <div>
+          
+        </div>
+
+        <button class="btn btn-success">
+          Create Character
+        </button>
+        or
+        <a href="/characters">Cancel</a>
+      </form>
     </div>
   </div>
+
+
+
+  <div class="btn-group btn-group-justified">
+    <a href="/actors" class="btn btn-primary">
+      Back
+    </a>
+    <a href="/actors/<%= @actor.id %>/edit" class="btn btn-warning">
+      Edit
+    </a>
+    <a href="/delete_actor/<%= @actor.id %>" class="btn btn-danger" rel="nofollow">
+      Delete
+    </a>
+  </div>
+</div>
 </div>
