@@ -32,8 +32,7 @@
           Actor
         </label>
 
-        <input type="text" id="actor_id" name="actor_id" placeholder="Actor" class="form-control" value="<%= @character.actor_id %>">
-      </div>
+        <%= select_tag("actor_id", options_from_collection_for_select(Actor.all, :id, :name, @character.actor_id), :class => "form-control") %>
 
       <!-- Label and input for name -->
       <div class="form-group">
@@ -41,7 +40,7 @@
           Name
         </label>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @character.name %>">
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control">
       </div>
 
       <button class="btn btn-warning">

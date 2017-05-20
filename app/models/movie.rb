@@ -10,7 +10,7 @@ class Movie < ApplicationRecord
   #  - year: must be integer between 1870 and 2050
   validates :year, :numericality => { :only_integer => true, :greater_than_or_equal_to => 1870, :less_than_or_equal_to => 2050}
   #  - duration: must be integer between 0 and 2764800, but it can be blank (hint: there is an option `:allow_blank => true
-  validates :duration, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 2764800}
+  validates :duration, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 2764800, :allow_blank => true}
 
   #  - description: no rules
 
